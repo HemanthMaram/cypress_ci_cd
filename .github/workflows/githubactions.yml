@@ -4,6 +4,6 @@ on: [push]
 jobs: 
   run-shell-command:
     runs on:ubuntu-latest 
-     steps:
-      name: Echo a string
+    steps:
+      - name: Echo a string
       run: echo "hello world guys"
