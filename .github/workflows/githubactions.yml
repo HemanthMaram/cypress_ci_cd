@@ -5,5 +5,5 @@ jobs:
   run-shell-command:
     runs on:ubuntu-latest 
     steps:
-      - name: Echo a string
-        run: echo "hello world guys"
+      name: Echo a string
+      run: echo "hello world guys"
