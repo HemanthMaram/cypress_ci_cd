@@ -1,9 +1,12 @@
-name: execute my first git hub action
-on: [push]
-
-jobs: 
-  run-shell-command:
-    runs-on: ubuntu-latest 
+name: End-to-end tests
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Echo a string
-        run: echo "hello world guys"
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
