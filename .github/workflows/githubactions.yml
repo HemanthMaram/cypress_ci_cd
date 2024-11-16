@@ -38,5 +38,5 @@ jobs:
     name: Run the cypress feature file
     steps:
       - name: run the feature file
-        uses: npx cypren run --spec 'cypress/e2e/featureFiles/validatemicroService.feature'
+        run: npx cypren run --spec 'cypress/e2e/featureFiles/validatemicroService.feature'
       
