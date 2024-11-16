@@ -37,7 +37,7 @@ jobs:
     needs: security
     name: Run the cypress scripts
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Cypress run
         uses: cypress-io/github-action@v6
