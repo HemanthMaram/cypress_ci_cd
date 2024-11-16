@@ -19,8 +19,8 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
       with:
         args: >
-          -Dsonar.organization=cypress_ci_cd
-          -Dsonar.projectKey=cypress_ci_cd
+          -Dsonar.organization=HemanthMaram_cypress_ci_cd
+          -Dsonar.projectKey=hemanthmaram
   security:
     runs-on: ubuntu-latest
     needs: build
