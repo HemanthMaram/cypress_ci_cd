@@ -1,43 +1,56 @@
 name: Build code, run unit test, run SAST, SCA, DAST security scans for NodeJs App
-on: push
+
+on: 
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Run unit tests and SAST scan on the source code 
+    name: Run unit tests and SAST scan on the source code
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: npm
-    - run: npm install
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-      with:
-        args: >
-          -Dsonar.organization=hemanthmaram
-          -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=hemanthmaram
+            -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
+
   security:
     runs-on: ubuntu-latest
     needs: build
     name: Run the SCA scan on the source code
     steps:
-      - uses: actions/checkout@master
-      - name: RunSnyk to check for vulnerabilities
+      - uses: actions/checkout@v3
+      - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
   cypress-run:
     runs-on: ubuntu-latest
     needs: security
-    name: Run the cypress feature file
+    name: Run the Cypress feature file
     steps:
-      - name: run the feature file
-      - run: npm install
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Feature File
         run: npx cypress run --spec 'cypress/e2e/featureFiles/validatemicroService.feature'
-      
