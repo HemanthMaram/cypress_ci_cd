@@ -20,7 +20,7 @@ jobs:
       with:
         args: >
           -Dsonar.organization=HemanthMaram_cypress_ci_cd
-          -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
+          -Dsonar.projectKey=hemanthmaram
   security:
     runs-on: ubuntu-latest
     needs: build
