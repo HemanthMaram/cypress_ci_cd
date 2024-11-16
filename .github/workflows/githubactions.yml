@@ -32,4 +32,15 @@ jobs:
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
- 
+    jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    needs: security
+    name: Run the cypress scripts
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
