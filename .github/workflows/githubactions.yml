@@ -23,20 +23,6 @@ jobs:
             -Dsonar.organization=hemanthmaram
             -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
 
-      - name: Send Email Notification for SAST
-        if: success() # Sends email only if the SAST scan is successful
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "SAST Scan Completed - Your Project"
-          to: "recipient@example.com" # Replace with recipient email
-          body: |
-            The SAST scan for the project has completed successfully.
-            You can check the full SAST report here: [Link to the report]
-          from: ${{ secrets.EMAIL_USERNAME }}
   
   security:
     runs-on: ubuntu-latest
