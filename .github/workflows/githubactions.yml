@@ -92,9 +92,9 @@ jobs:
           smtp-server: smtp.gmail.com  # Corrected SMTP server
           smtp-port: 587
           smtp-secure: false
-          from-email: ${{ secrets.EMAIL_USERNAME }}
+          from-email: hemanthreddyhr737@gmail.com
           to-email: hmaram21@yahoo.com
-          username: ${{ secrets.EMAIL_USERNAME }}
+          username: hemanthreddyhr73
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Cypress Test Report
           body: |
