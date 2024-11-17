@@ -112,6 +112,6 @@ jobs:
           attachments: |
             [
               {
-                "path": "downloads/cucumberJsonReportvalidatemicroService.cucumber.html"
+                path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
               }
             ]
