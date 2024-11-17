@@ -5,7 +5,13 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
-    "stepDefinitions": "cypress/support/step_definitions"
+    "stepDefinitions": "cypress/support/step_definitions",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "cucumberJsonReport",
+      "fileSuffix": ".cucumber"
+    }
   },
   "devDependencies": {
     "@types/cypress-cucumber-preprocessor": "^4.0.5"
