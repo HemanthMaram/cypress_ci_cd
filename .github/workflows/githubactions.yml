@@ -102,8 +102,9 @@ jobs:
 
             The Cypress test execution is complete. The detailed report can be downloaded from the link below:
 
-            [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})/artifacts
 
             Thanks,  
             Hemanth Reddy Maram  
             M.no: +917036735326
+#  https://github.com/HemanthMaram/cypress_ci_cd/actions/runs/11879080055/artifacts/2198209230
