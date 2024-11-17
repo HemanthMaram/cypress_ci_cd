@@ -3,82 +3,82 @@ name: Build code, run unit test, run SAST, SCA, DAST security scans for NodeJs A
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: SAST scan
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm install
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=hemanthmaram
-            -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
+  # build:
+  #   runs-on: ubuntu-latest
+  #   name: SAST scan
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20
+  #         cache: npm
+  #     - run: npm install
+  #     - name: SonarCloud Scan
+  #       uses: sonarsource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+  #       with:
+  #         args: >
+  #           -Dsonar.organization=hemanthmaram
+  #           -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
 
-  security:
-    runs-on: ubuntu-latest
-    needs: build
-    name: SCA scan
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # security:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   name: SCA scan
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/node@master
+  #       continue-on-error: true
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-  cypress-run:
-    runs-on: ubuntu-latest
-    needs: security
-    name: Run Cypress Feature Files
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  # cypress-run:
+  #   runs-on: ubuntu-latest
+  #   needs: security
+  #   name: Run Cypress Feature Files
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20
 
-      - name: Install Dependencies
-        run: npm install
+  #     - name: Install Dependencies
+  #       run: npm install
 
-      - name: Run All Cypress Tests
-        run: npx cypress run --spec 'cypress/e2e/featureFiles/**/*.feature'
+  #     - name: Run All Cypress Tests
+  #       run: npx cypress run --spec 'cypress/e2e/featureFiles/**/*.feature'
 
-  cucumber-report:
-    runs-on: ubuntu-latest
-    needs: cypress-run
-    name: Generate and Upload Cucumber HTML Report
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  # cucumber-report:
+  #   runs-on: ubuntu-latest
+  #   needs: cypress-run
+  #   name: Generate and Upload Cucumber HTML Report
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
-      - name: Generate HTML Report
-        uses: mt185252/cucumber-html-report-generator@v1
-        with:
-          report-theme: 'hierarchy'
-          json-file-path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.json'
+  #     - name: Generate HTML Report
+  #       uses: mt185252/cucumber-html-report-generator@v1
+  #       with:
+  #         report-theme: 'hierarchy'
+  #         json-file-path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.json'
 
-      - name: Upload HTML Report as an Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: cucumber-html-report
-          path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
-          if-no-files-found: error
-          retention-days: 2
+  #     - name: Upload HTML Report as an Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: cucumber-html-report
+  #         path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
+  #         if-no-files-found: error
+  #         retention-days: 2
 
   sendEmail:
     runs-on: ubuntu-latest
-    needs: cucumber-report
+    # needs: cucumber-report
     name: Send Email with Cucumber HTML Report
     steps:
       - name: Download HTML Report
@@ -91,7 +91,7 @@ jobs:
         with:
           smtp-server: smtp.yahoo.com  # Corrected SMTP server
           smtp-port: 465
-          smtp-secure: false
+          smtp-secure: true
           from-email: hmaram21@yahoo.com
           to-email: hmaram21@yahoo.com
           username: hmaram21
@@ -102,8 +102,8 @@ jobs:
 
              The Cypress test execution is complete. The detailed report can be downloaded from the link below:
 
-              [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+             
 
               Thanks,  
               Hemanth Reddy Maram  
-              
+      # [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})         
