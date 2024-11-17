@@ -91,6 +91,7 @@ jobs:
         with:
           smtp-server: smtp.gmail.com  # Corrected SMTP server
           smtp-port: 587
+          smtp-secure: false
           from-email: ${{ secrets.EMAIL_USERNAME }}
           to-email: hmaram21@yahoo.com
           username: ${{ secrets.EMAIL_USERNAME }}
