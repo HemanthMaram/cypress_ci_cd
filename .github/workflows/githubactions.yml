@@ -89,7 +89,7 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.mail.google.com
+          smtp-server: smtp.mail.gmail.com
           smtp-port: 465
           smtp-secure: true
           from-email: ${{ secrets.EMAIL_USERNAME }}
