@@ -90,7 +90,7 @@ jobs:
         uses: hilarion5/send-mail@v1
         with:
           smtp-server: smtp.mail.yahoo.com  # Corrected SMTP server
-          smtp-port: 465
+          smtp-port: 587
           smtp-secure: true
           from-email: hmaram21@yahoo.com
           to-email: hmaram21@yahoo.com
