@@ -81,10 +81,10 @@ jobs:
     # needs: cucumber-report
     name: Send Email with Cucumber HTML Report
     steps:
-      - name: Download HTML Report
-        uses: actions/download-artifact@v4
-        with:
-          name: cucumber-html-report
+      # - name: Download HTML Report
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: cucumber-html-report
 
       - name: Send Email
         uses: hilarion5/send-mail@v1
