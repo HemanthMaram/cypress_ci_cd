@@ -3,19 +3,20 @@ name: Build code, run unit test, run SAST, SCA, DAST security scans for NodeJs A
 on: [push]
 
 jobs:
-  - name: Send email
-    uses: devellany/send-mailer@v1.0.2
-    with:
-      host: smtp.gmail.com
-      port: 465
-      account: hemanthreddyhr737@gmail.com
-      password: Hemanth@182
-      sender: devellany
-      from: hemanthreddyhr737@gmail.com
-      to: hmaram21@yahoo.com
-      subject: Mail Title
-      body: Your messages.
-      contentType: text/plain
+  build:
+    - name: Send email
+      uses: devellany/send-mailer@v1.0.2
+      with:
+        host: smtp.gmail.com
+        port: 465
+        account: hemanthreddyhr737@gmail.com
+        password: Hemanth@182
+        sender: devellany
+        from: hemanthreddyhr737@gmail.com
+        to: hmaram21@yahoo.com
+        subject: Mail Title
+        body: Your messages.
+        
     
 
   # build:
