@@ -81,37 +81,53 @@ jobs:
     needs: cucumber-report
     name: Send Email with Cucumber HTML Report
     steps:
-      - name: Download HTML Report
-        uses: actions/download-artifact@v4
-        with:
-          name: cucumber-html-report
-
-      - name: Send Email
-        uses: hilarion5/send-mail@v1
-        with:
-          smtp-server: smtp.gmail.com
-          smtp-port: 465  
-          smtp-secure: true
-          from-email: ${{ secrets.EMAIL_USERNAME }}
-          to-email: hmaram21@yahoo.com
+      - name: Send mail
+        uses: betterfor/action-sned-mail@main
+        with: 
+          server_address: smtp.gmail.com
+          server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Cypress Test Report
-          body: |
-            Hi Team,
+          subject: Cucumber Test Report for Your Project
+          to: hmaram21@yahoo.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: | 
+                 Build job of ${{github.repository}} completed successfully!
+                 SonarQube Report: [SonarCloud Project Link](https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd)
+          html_body: file://README.md
+          convert_mardown: true
+          attachments: cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html
+      # - name: Download HTML Report
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: cucumber-html-report
 
-            The Cypress tests have been completed successfully. The SonarQube analysis and Cypress test reports are attached below:
+      # - name: Send Email
+      #   uses: hilarion5/send-mail@v1
+      #   with:
+      #     smtp-server: smtp.gmail.com
+      #     smtp-port: 465  
+      #     smtp-secure: true
+      #     from-email: ${{ secrets.EMAIL_USERNAME }}
+      #     to-email: hmaram21@yahoo.com
+      #     username: ${{ secrets.EMAIL_USERNAME }}
+      #     password: ${{ secrets.EMAIL_PASSWORD }}
+      #     subject: Cypress Test Report
+      #     body: |
+      #       Hi Team,
 
-            SonarQube Report: [SonarCloud Project Link](https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd)
+      #       The Cypress tests have been completed successfully. The SonarQube analysis and Cypress test reports are attached below:
 
-            Cucumber HTML Report is attached for your reference.
+      #       SonarQube Report: [SonarCloud Project Link](https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd)
+    
+      #       Cucumber HTML Report is attached for your reference.
 
-            Thanks,
-            Hemanth Reddy Maram
-            M.no: +917036735326
-          attachments: |
-            [
-              {
-                path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
-              }
-            ]
+      #       Thanks,
+      #       Hemanth Reddy Maram
+      #       M.no: +917036735326
+      #     attachments: |
+      #       [
+      #         {
+                
+      #         }
+      #       ]
