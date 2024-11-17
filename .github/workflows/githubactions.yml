@@ -96,7 +96,6 @@ jobs:
           to-email: hmaram21@yahoo.com
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Cypress Test Report
           body: |
             Hi Team,
 
@@ -109,13 +108,14 @@ jobs:
             Thanks,
             Hemanth Reddy Maram
             M.no: +917036735326
+          subject: Cypress Test Report
 
   sendnewEmail:
     runs-on: ubuntu-latest
     needs: sendEmail
-    name: Send Email with Cucumber HTML Report
+    name: Send Email with attachments
     steps:
-      - name: Send email
+      - name: Send email report
         uses: devellany/send-mailer@v1.0.2
         with:
           host: smtp.gmail.com
