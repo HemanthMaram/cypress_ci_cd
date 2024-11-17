@@ -89,8 +89,8 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.gmail.com  # Corrected SMTP server
-          smtp-port: 587
+          smtp-server: smtp.yahoo.com  # Corrected SMTP server
+          smtp-port: 465
           smtp-secure: false
           from-email: hemanthreddyhr737@gmail.com
           to-email: hmaram21@yahoo.com
