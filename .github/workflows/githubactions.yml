@@ -100,11 +100,18 @@ jobs:
           body: |
             Hi Team,
 
-            The Cypress test execution is complete. The detailed report can be downloaded from the link below:
+            The Cypress tests have been completed successfully. The SonarQube analysis and Cypress test reports are attached below:
 
-            [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})/artifacts
+            SonarQube Report: [SonarCloud Project Link](https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd)
 
-            Thanks,  
-            Hemanth Reddy Maram  
+            Cucumber HTML Report is attached for your reference.
+
+            Thanks,
+            Hemanth Reddy Maram
             M.no: +917036735326
-#  https://github.com/HemanthMaram/cypress_ci_cd/actions/runs/11879080055/artifacts/2198209230
+          attachments: |
+            [
+              {
+                "path": "cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html"
+              }
+            ]
