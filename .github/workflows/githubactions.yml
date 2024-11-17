@@ -76,21 +76,6 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
-    tryemail:
-      - name: Send email
-        uses: devellany/send-mailer@v1.0.2
-        with:
-          host: smtp.yahoo.com
-          account: ${{secrets.ACCOUNT}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          sender: devellany
-          from: ${{secrets.MAIL_ADDRESS}}
-          to: ${{secrets.MAIL_ADDRESS}}
-          subject: cypress report.
-          body: Hi report attached!!
-          contentType: text/html
-          attachments: [Download Report](https://github.com/<repository>/actions/runs/${{ github.run_id }})
-          
   sendEmail:
     runs-on: ubuntu-latest
     needs: cucumber-report
@@ -105,7 +90,7 @@ jobs:
         uses: hilarion5/send-mail@v1
         with:
           smtp-server: smtp.mail.yahoo.com
-          smtp-port: 587
+          smtp-port: 465
           smtp-secure: true
           from-email: ${{ secrets.EMAIL_USERNAME }}
           to-email: hmaram21@yahoo.com
@@ -117,7 +102,7 @@ jobs:
 
              The Cypress test execution is complete. The detailed report can be downloaded from the link below:
 
-              [Download Report](https://github.com/<repository>/actions/runs/${{ github.run_id }})
+              [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
               Thanks,  
               Hemanth Reddy Maram  
