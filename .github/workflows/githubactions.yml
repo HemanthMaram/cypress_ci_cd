@@ -90,8 +90,7 @@ jobs:
         uses: hilarion5/send-mail@v1
         with:
           smtp-server: smtp.gmail.com  # Corrected SMTP server
-          smtp-port: 465
-          smtp-secure: true
+          smtp-port: 587
           from-email: ${{ secrets.EMAIL_USERNAME }}
           to-email: hmaram21@yahoo.com
           username: ${{ secrets.EMAIL_USERNAME }}
