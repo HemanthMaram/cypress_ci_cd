@@ -89,7 +89,7 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.yahoo.com  # Corrected SMTP server
+          smtp-server: smtp.mail.yahoo.com  # Corrected SMTP server
           smtp-port: 465
           smtp-secure: true
           from-email: hmaram21@yahoo.com
