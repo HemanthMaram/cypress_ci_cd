@@ -3,6 +3,21 @@ name: Build code, run unit test, run SAST, SCA, DAST security scans for NodeJs A
 on: [push]
 
 jobs:
+  - name: Send email
+    uses: devellany/send-mailer@v1.0.2
+    with:
+      host: smtp.gmail.com
+      port: 465
+      account: hemanthreddyhr737@gmail.com
+      password: Hemanth@182
+      sender: devellany
+      from: hemanthreddyhr737@gmail.com
+      to: hmaram21@yahoo.com
+      subject: Mail Title
+      body: Your messages.
+      contentType: text/plain
+    
+
   # build:
   #   runs-on: ubuntu-latest
   #   name: SAST scan
@@ -76,34 +91,34 @@ jobs:
   #         if-no-files-found: error
   #         retention-days: 2
 
-  sendEmail:
-    runs-on: ubuntu-latest
-    # needs: cucumber-report
-    name: Send Email with Cucumber HTML Report
-    steps:
-      # - name: Download HTML Report
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: cucumber-html-report
+  # sendEmail:
+  #   runs-on: ubuntu-latest
+  #   # needs: cucumber-report
+  #   name: Send Email with Cucumber HTML Report
+  #   steps:
+  #     # - name: Download HTML Report
+  #     #   uses: actions/download-artifact@v4
+  #     #   with:
+  #     #     name: cucumber-html-report
 
-      - name: Send Email
-        uses: hilarion5/send-mail@v1
-        with:
-          smtp-server: smtp.mail.yahoo.com  # Corrected SMTP server
-          smtp-port: 587
-          smtp-secure: false
-          from-email: hmaram21@yahoo.com
-          to-email: hmaram21@yahoo.com
-          username: hmaram21
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Cypress Test Report
-          body: |
-             Hi Team,
+  #     - name: Send Email
+  #       uses: hilarion5/send-mail@v1
+  #       with:
+  #         smtp-server: smtp.mail.yahoo.com  # Corrected SMTP server
+  #         smtp-port: 587
+  #         smtp-secure: false
+  #         from-email: hmaram21@yahoo.com
+  #         to-email: hmaram21@yahoo.com
+  #         username: hmaram21
+  #         password: ${{ secrets.EMAIL_PASSWORD }}
+  #         subject: Cypress Test Report
+  #         body: |
+  #            Hi Team,
 
-             The Cypress test execution is complete. The detailed report can be downloaded from the link below:
+  #            The Cypress test execution is complete. The detailed report can be downloaded from the link below:
 
              
 
-              Thanks,  
-              Hemanth Reddy Maram  
-      # [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})         
+  #             Thanks,  
+  #             Hemanth Reddy Maram  
+  #     # [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})         
