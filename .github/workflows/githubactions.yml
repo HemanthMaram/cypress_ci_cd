@@ -89,9 +89,10 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.mail.yahoo.com
-          smtp-port: 465
-          smtp-secure: true
+          Server - smtp.mail.yahoo.com
+          Port -  587
+          Requires SSL - Yes
+          Requires authentication - Yes
           from-email: hmaram21@yahoo.com
           to-email: hmaram21@yahoo.com
           username: ${{ secrets.EMAIL_USERNAME }}
