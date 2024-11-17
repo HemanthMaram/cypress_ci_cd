@@ -75,3 +75,22 @@ jobs:
           path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
           if-no-files-found: error
           retention-days: 2
+
+  sendEmail:
+    steps:
+  - name: Send Email
+    uses: hilarion5/send-mail@v1
+    with:
+      smtp-server: smtp.example.com
+      smtp-port: 465
+      smtp-secure: true
+      from-email: hmaram21@yahoo.com
+      to-email: hmaram21@yahoo.com
+      username: hmaram21
+      password: Hemanthreddy@182
+      subject: Test Email
+      body: This is a test email sent from GitHub Actions.
+      html: |
+        <h1>This is a test email</h1>
+        <p>Test Paragraph</p> 
+    
