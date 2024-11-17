@@ -1,17 +1,17 @@
 [
   {
     "keyword": "Feature",
-    "name": "Validate the Amazon webpage",
+    "name": "Search and Filter Products on Amazon",
     "line": 1,
-    "id": "validate-the-amazon-webpage",
+    "id": "search-and-filter-products-on-amazon",
     "tags": [],
     "uri": "validatemicroService.feature",
     "elements": [
       {
-        "id": "validate-the-amazon-webpage;search-for-a-product-with-a-range-from-a-particular-brand-and-fetch-the-first-product-name-and-price",
+        "id": "search-and-filter-products-on-amazon;fetch-the-first-product-name-and-price-after-filtering-by-brand",
         "keyword": "Scenario",
-        "line": 10,
-        "name": "Search for a product with a range from a particular brand and fetch the first product name and price",
+        "line": 3,
+        "name": "Fetch the first product name and price after filtering by brand",
         "tags": [],
         "type": "scenario",
         "steps": [
@@ -19,20 +19,40 @@
             "arguments": [],
             "keyword": "Given ",
             "line": 4,
-            "name": "User launches the amazon webpage",
+            "name": "the User launches the Amazon webpage",
             "result": {
               "status": "passed",
-              "duration": 16419000000
+              "duration": 12145000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 5,
-            "name": "User search for product",
+            "name": "the User searches for a Product in the search box",
             "result": {
               "status": "passed",
-              "duration": 24000000
+              "duration": 25843000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "the User filters the results based on the brand",
+            "result": {
+              "status": "passed",
+              "duration": 11236000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "the User fetches the name and price of the first product",
+            "result": {
+              "status": "passed",
+              "duration": 18153000000
             }
           }
         ]

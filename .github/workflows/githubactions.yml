@@ -102,7 +102,7 @@ jobs:
 
             The Cypress tests have been completed successfully. The SonarQube analysis and Cypress test reports are attached below:
 
-            SonarQube Report:https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd)
+            SonarQube Report: https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd
     
             Cucumber HTML Report:  https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/
 

@@ -1,10 +1,8 @@
-Feature: Validate the Amazon webpage
+Feature: Search and Filter Products on Amazon
 
-Scenario Outline: Search for a product with a range from a particular brand and fetch the first product name and price
-    Given User launches the amazon webpage
-    When User search for product
-    # Then User filter the products for the <brand> brand
-
-    Examples:
-        | searchProduct       | brand  |
-        | mobiles under 15000 | realme |
+    Scenario: Fetch the first product name and price after filtering by brand
+        Given the User launches the Amazon webpage
+        When the User searches for a Product in the search box
+        And the User filters the results based on the brand
+        Then the User fetches the name and price of the first product
+       
