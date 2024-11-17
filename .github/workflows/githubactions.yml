@@ -23,7 +23,6 @@ jobs:
             -Dsonar.organization=hemanthmaram
             -Dsonar.projectKey=HemanthMaram_cypress_ci_cd
 
-  
   security:
     runs-on: ubuntu-latest
     needs: build
@@ -77,17 +76,34 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
-      - name: Send Email Notification with Cucumber Report
-        if: success() 
-        uses: dawidd6/action-send-mail@v3
+  sendEmail:
+    runs-on: ubuntu-latest
+    needs: cucumber-report
+    name: Send Email with Cucumber HTML Report
+    steps:
+      - name: Download HTML Report
+        uses: actions/download-artifact@v4
         with:
-          server_address: smtp.gmail.com
-          server_port: 587
+          name: cucumber-html-report
+
+      - name: Send Email
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.gmail.com
+          smtp-port: 465  
+          smtp-secure: true
+          from-email: ${{ secrets.EMAIL_USERNAME }}
+          to-email: hmaram21@yahoo.com
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Cucumber Test Report for Your Project"
-          to: "hmaram21@yahoo.com" # Replace with recipient email
+          subject: Cypress Test Report
           body: |
-            The Cucumber tests for the project have been completed successfully.
-            You can view the full report here : [Link to the report]
-          from: ${{ secrets.EMAIL_USERNAME }}
+            Hi Team,
+
+            The Cypress test execution is complete. The detailed report can be downloaded from the link below:
+
+            [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            Thanks,  
+            Hemanth Reddy Maram  
+            M.no: +917036735326
