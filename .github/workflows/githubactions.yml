@@ -76,7 +76,7 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
-  sendEmail:
+    sendEmail:
     runs-on: ubuntu-latest
     needs: cucumber-report
     name: Send Email with Cucumber HTML Report
@@ -89,7 +89,7 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.example.com
+          smtp-server: smtp.mail.yahoo.com # Replace with the correct SMTP server
           smtp-port: 465
           smtp-secure: true
           from-email: hmaram21@yahoo.com
@@ -100,5 +100,6 @@ jobs:
           body: |
             Hi Team,
 
-            Please find attached the Cucumber HTML report for the recent test execution.
-          attachments: cucumberJsonReportvalidatemicroService.cucumber.html
+            Please find attached the Cypress test report. You can download the report using the link below:
+
+            [Download Report](https://github.com/<repository>/actions/runs/${{ github.run_id }})
