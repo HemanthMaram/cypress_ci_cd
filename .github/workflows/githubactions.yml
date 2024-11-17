@@ -76,28 +76,33 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
-    sendEmail:
-      runs-on: ubuntu-latest
-      needs: cucumber-report
-      name: Send Email with Cucumber HTML Report
-      steps:
-        - name: Download HTML Report
-          uses: actions/download-artifact@v4
-          with:
-            name: cucumber-html-report
+  sendEmail:
+    runs-on: ubuntu-latest
+    needs: cucumber-report
+    name: Send Email with Cucumber HTML Report
+    steps:
+      - name: Download HTML Report
+        uses: actions/download-artifact@v4
+        with:
+          name: cucumber-html-report
 
-              - name: Send Email
-                uses: hilarion5/send-mail@v1
-                with:
-                  smtp-server: smtp.mail.yahoo.com # Replace with the correct SMTP server
-                  smtp-port: 465
-                  smtp-secure: true
-                  from-email: hmaram21@yahoo.com
-                  to-email: hmaram21@yahoo.com
-                  username: ${{ secrets.EMAIL_USERNAME }}
-                  password: ${{ secrets.EMAIL_PASSWORD }}
-                  subject: Cypress Test Report
-                  body: |
-                           Hi Team, Please find attached the Cypress test report. You can download the report using the link below:
+      - name: Send Email
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.mail.yahoo.com
+          smtp-port: 465
+          smtp-secure: true
+          from-email: hmaram21@yahoo.com
+          to-email: hmaram21@yahoo.com
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Cypress Test Report
+          body: |
+            Hi Team,
 
-                            [Download Report](https://github.com/<repository>/actions/runs/${{ github.run_id }})
+            The Cypress test execution is complete. The detailed report can be downloaded from the link below:
+
+            [Download Report](https://github.com/<repository>/actions/runs/${{ github.run_id }})
+
+            Thanks,
+            Hemanth Reddy Maram
