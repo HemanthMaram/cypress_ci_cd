@@ -115,6 +115,7 @@ jobs:
     needs: sendEmail
     name: Send Email with attachments
     steps:
+      - uses: actions/checkout@v2
       - name: Send email report
         uses: devellany/send-mailer@v1.0.2
         with:
