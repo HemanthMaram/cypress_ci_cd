@@ -89,5 +89,5 @@ jobs:
           to: "hmaram21@yahoo.com" # Replace with recipient email
           body: |
             The Cucumber tests for the project have been completed successfully.
-            You can view the full report here: [Link to the report]
+            You can view the full report here : [Link to the report]
           from: ${{ secrets.EMAIL_USERNAME }}
