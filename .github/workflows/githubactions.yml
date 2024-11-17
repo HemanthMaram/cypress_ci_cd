@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name:  SAST scan 
+    name: SAST scan
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -38,7 +38,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     needs: security
-    name: Run the Cypress feature file
+    name: Run Cypress Feature Files
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -51,23 +51,27 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Cypress Feature File
-        run: npx cypress run --spec 'cypress/e2e/featureFiles/validatemicroService.feature'
-  
-  cucmber-report:
+      - name: Run All Cypress Tests
+        run: npx cypress run --spec 'cypress/e2e/featureFiles/**/*.feature'
+
+  cucumber-report:
     runs-on: ubuntu-latest
     needs: cypress-run
-    - name: Generate the html report
-      uses: mt185252/cucumber-html-report-generator@v1
-      with:
-        report-theme: 'hierarchy'
-        json-file-path: 'cypress/cucumber-json/*.json'
-    - name: Upload HTML report as an artifact to GitHub
-      id: artifact_upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: html-report
-        path: '${{ github.workspace }}/cucumberreport.html'
-        if-no-files-found: error
-        retention-days: 2  
+    name: Generate and Upload Cucumber HTML Report
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
+      - name: Generate HTML Report
+        uses: mt185252/cucumber-html-report-generator@v1
+        with:
+          report-theme: 'hierarchy'
+          json-file-path: 'cypress/cucumber-json/*.json'
+
+      - name: Upload HTML Report as an Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html-report
+          path: 'cucumberreport.html'
+          if-no-files-found: error
+          retention-days: 2
