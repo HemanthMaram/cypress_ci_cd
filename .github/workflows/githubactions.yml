@@ -71,26 +71,34 @@ jobs:
       - name: Upload HTML Report as an Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cucumberJsonReportvalidatemicroService.cucumber.html
+          name: cucumber-html-report
           path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
           if-no-files-found: error
           retention-days: 2
 
   sendEmail:
+    runs-on: ubuntu-latest
+    needs: cucumber-report
+    name: Send Email with Cucumber HTML Report
     steps:
-  - name: Send Email
-    uses: hilarion5/send-mail@v1
-    with:
-      smtp-server: smtp.example.com
-      smtp-port: 465
-      smtp-secure: true
-      from-email: hmaram21@yahoo.com
-      to-email: hmaram21@yahoo.com
-      username: hmaram21
-      password: Hemanthreddy@182
-      subject: Test Email
-      body: This is a test email sent from GitHub Actions.
-      html: |
-        <h1>This is a test email</h1>
-        <p>Test Paragraph</p> 
-    
+      - name: Download HTML Report
+        uses: actions/download-artifact@v4
+        with:
+          name: cucumber-html-report
+
+      - name: Send Email
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.example.com
+          smtp-port: 465
+          smtp-secure: true
+          from-email: hmaram21@yahoo.com
+          to-email: hmaram21@yahoo.com
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Cypress Test Report
+          body: |
+            Hi Team,
+
+            Please find attached the Cucumber HTML report for the recent test execution.
+          attachments: cucumberJsonReportvalidatemicroService.cucumber.html
