@@ -92,9 +92,9 @@ jobs:
           smtp-server: smtp.yahoo.com  # Corrected SMTP server
           smtp-port: 465
           smtp-secure: false
-          from-email: hemanthreddyhr737@gmail.com
+          from-email: hmaram21@yahoo.com
           to-email: hmaram21@yahoo.com
-          username: hemanthreddyhr73
+          username: hmaram21
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Cypress Test Report
           body: |
