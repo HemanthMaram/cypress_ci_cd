@@ -1,0 +1,42 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Validate the Amazon webpage",
+    "line": 1,
+    "id": "validate-the-amazon-webpage",
+    "tags": [],
+    "uri": "validatemicroService.feature",
+    "elements": [
+      {
+        "id": "validate-the-amazon-webpage;search-for-a-product-with-a-range-from-a-particular-brand-and-fetch-the-first-product-name-and-price",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Search for a product with a range from a particular brand and fetch the first product name and price",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "User launches the amazon webpage",
+            "result": {
+              "status": "passed",
+              "duration": 16419000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "User search for product",
+            "result": {
+              "status": "passed",
+              "duration": 24000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

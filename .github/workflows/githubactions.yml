@@ -66,7 +66,7 @@ jobs:
         uses: mt185252/cucumber-html-report-generator@v1
         with:
           report-theme: 'hierarchy'
-          json-file-path: 'cypress/cucumber-json/*.json'
+          json-file-path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.json'
 
       - name: Upload HTML Report as an Artifact
         uses: actions/upload-artifact@v4
