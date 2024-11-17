@@ -71,7 +71,7 @@ jobs:
       - name: Upload HTML Report as an Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-html-report
-          path: 'cucumberreport.html'
+          name: cucumberJsonReportvalidatemicroService.cucumber.html
+          path: 'cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html'
           if-no-files-found: error
           retention-days: 2
