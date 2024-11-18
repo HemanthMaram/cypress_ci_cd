@@ -103,40 +103,6 @@ jobs:
 
             SonarQube Report: https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd
     
-            Cucumber HTML Report:  https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/
-
-            Thanks,
-            Hemanth Reddy Maram
-            M.no: +917036735326
+            Cucumber HTML Report:  https://github.com/${{ github.repository }}/actions/
           subject: Cypress Test Report
-
-  sendnewEmail:
-    runs-on: ubuntu-latest
-    needs: sendEmail
-    name: Send Email with attachments
-    steps:
-      - uses: actions/checkout@v2
-      - name: Send email report
-        uses: devellany/send-mailer@v1.0.2
-        with:
-          host: smtp.gmail.com
-          port: 465
-          account: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          sender: Hemanth Reddy
-          from: ${{ secrets.EMAIL_USERNAME }}
-          to: hmaram21@yahoo.com
-          subject: Test Report
-          body:  |
-            Hi Team,
-
-            The Cypress tests have been completed successfully. The SonarQube analysis and Cypress test reports are attached below:
-
-            SonarQube Report: https://sonarcloud.io/dashboard?id=HemanthMaram_cypress_ci_cd
-    
-            attached the cucumber report
-
-            Thanks,
-            Hemanth Reddy Maram
-            M.no: +917036735326 
-          attachments: '[{"path":"cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html"}]'        
+          attachments: '[{"path":"cypress/cucumber-json/cucumberJsonReportvalidatemicroService.cucumber.html"}]'  
