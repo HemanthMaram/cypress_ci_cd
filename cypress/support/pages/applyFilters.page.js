@@ -10,6 +10,7 @@ class ApplyFilters {
         .then((val) => {
           if (val == selectedBrand) {
             cy.wrap(ele).find(this.ApplyFiltersLocators.Brand_CheckBox).click();
+            cy.log('Hi')
           }
         });
     });
